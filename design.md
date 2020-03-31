@@ -24,3 +24,19 @@ we use a json / bson / dictionary format
         ...
     }
 }
+
+
+
+Else, if we decide to go the csv route, maybe simpler, the columns would be
+
+(this is a highly impractical route)
+
+we make a file for each commodity that we search for, and in that we
+
+
+in rice_5kg.csv
+
+date    bb_price    grofers_price   pantry_price
+
+
+
