@@ -13,6 +13,9 @@ tqdm = "*"
 jupyter = "*"
 scikit-learn = "*"
 matplotlib = "*"
+scrapy = "*"
+requests = "*"
+scrapy-splash = "*"
 
 [requires]
 python_version = "3.8"
