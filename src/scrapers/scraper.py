@@ -1,17 +1,37 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+import requests
 import time
 
+start = time.time()
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
 options.add_argument('--headless')
 
 driver = webdriver.Chrome('/usr/lib/chromium/chromedriver', options = options)
-url = 'https://grofers.com/prn/grofers-mothers-choice-american-almonds/prid/391676'
+
+query = input('Enter what you want to search for\n')
+
+url = 'https://www.bigbasket.com/ps/?q=' + query
+
+print('Random print statement')
+
 driver.get(url)
-time.sleep(5)
-page_source = driver.page_source
-soup = BeautifulSoup(page_source, 'lxml')
-js_test = soup.find('div', class_ = 'pdp-product__price--new')
-print(js_test.text)
+
+print('Page loaded')
+
+# //product-template/div/div[4]/div[3]/div/div[1]/h4/span[2]/span
+# //product-template/div/div[4]/div[1]/a
+
+time.sleep(3)
+items = driver.find_elements_by_xpath('//product-template/div/div[4]/div[3]/div/div[1]/h4/span[2]/span')
+item_names = driver.find_elements_by_xpath('//product-template/div/div[4]/div[1]/a')
+
+print(len(items))
+
+for i in range(len(items)):
+	print(item_names[i].text, '-', items[i].text)
+
+end = time.time()
+print(end-start)
