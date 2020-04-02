@@ -2,6 +2,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import requests
 import time
+from webdriver_manager.chrome import ChromeDriverManager #as part of the possible fix for the webdriver issue
 
 start = time.time()
 options = webdriver.ChromeOptions()
@@ -9,7 +10,10 @@ options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
 options.add_argument('--headless')
 
-driver = webdriver.Chrome('/usr/lib/chromium/chromedriver', options = options)
+#driver = webdriver.Chrome('/usr/lib/chromium/chromedriver', options = options)
+driver = webdriver.Chrome(ChromeDriverManager().install(), options=options) #part of a possible fix
+
+
 
 query = input('Enter what you want to search for\n')
 
